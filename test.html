@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>Test</title>
+	<style>
+		body { margin: 0; text-align: center; font-family: Verdana, sans-serif; }
+	</style>
+</head>
+<body>
+	<img src="test.png" /><br />
+	<script src="audiotool.js"></script>
+	<script>
+		var audiotool = new Audiotool ();
+
+		// test peaks - plot against audiotool radio screenshot
+		// one should probably average peaks to get exact match
+		audiotool.getPeaks ('https://api.audiotool.com/track/white_lies-ZInAr1AI3/0/peaks.pks', function (peaks) {
+			var canvas = document.createElement ('canvas');
+			canvas.width = 507; canvas.height = 31;
+			var context = canvas.getContext ('2d');
+			for (var i = 0; i < 507; i++) {
+				var v = peaks[(i * peaks.length / 507) | 0] >> 4;
+				context.fillRect (i, 16 - v, 1, 2 * v);
+			}
+			document.body.appendChild (canvas);
+		});
+
+		// play random track
+		audiotool.getRandomTrack (function (track) {
+			var div = document.createElement ('div');
+			div.innerHTML = '<br />Random track: ' + track.name + '<br />\
+				<audio controls autoplay style="width:507px">\
+					<source src="' + track.urls[0] + '" type="audio/mpeg">\
+					<source src="' + track.urls[1] + '" type="audio/ogg">\
+				</audio><br />\
+				<img src="' + track.cover + '" style="width:507px;display:none" onload="this.style.display=null" />';
+			document.body.appendChild (div);
+		});
+
+	</script>
+</body>
+</html>
