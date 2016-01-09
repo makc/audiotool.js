@@ -5,9 +5,10 @@ Just a script to help you use Audiotool in your fiddles.
 
 #### How to use? ####
 
-Include audiotool.js and then do something like this:
+Include [audiotool.js](https://makc.github.io/audiotool.js/audiotool.js) and then do something like [this](https://jsfiddle.net/rkwL26bz/):
 
 ```javascript
+var audiotool = new Audiotool ();
 audiotool.getRandomTrack (function (track) {
 	var div = document.createElement ('div');
 	div.innerHTML = 'Random track: ' + track.name + '<br />\
