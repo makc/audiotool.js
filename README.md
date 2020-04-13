@@ -19,3 +19,8 @@ audiotool.getRandomTrack (function (track) {
 	document.body.appendChild (div);
 });
 ```
+
+
+#### CORS error ####
+
+Currently their API has a bug that prevents this script from working. It is [unlikely](https://twitter.com/andremichelle/status/1245564907581554688) that they will fix it.
